@@ -1,0 +1,45 @@
+{% include 'base.html.twig' %}
+
+{% block header %}
+
+    <title>{{ revision[0].title }}</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="/revision/{{ slug }}">Menu des revisions</a>
+                <a class="navbar-brand" href="/revision/{{ slug }}/{{ revision[0].id }}/restaurer">Restaurer cette version</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <h1 id="titre-page-affichage" class="display-1" >{{ revision[0].title }}</h1>
+
+    <div class="jumbotron">
+
+        {{ revision[0].content | raw }} {# raw permet d'interpréter le contenu en HTML #}
+
+    </div>
+
+    <hr>
+
+    <div class="jumbotron">
+
+        <h1 class="display-4">Informations complémentaires sur cette révision : </h1>
+        <ul>
+
+            <li>Meta title :  {{ revision[0].meta_title }}</li>
+            <li>Meta description : {{ revision[0].meta_description }}</li>
+            <li>Date de la dernière modification : {{ revision[0].date_created }}</li>
+
+        </ul>
+
+    </div>
+{% endblock %}

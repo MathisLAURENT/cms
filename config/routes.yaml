@@ -1,0 +1,46 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
+edition:
+    path: /edition
+    controller : App\Controller\EditionController::edition
+
+ajout:
+    path: /ajout
+    controller : App\Controller\ModificationController::nouvellePage
+
+modification:
+    path: /modification/{slug}
+    controller : App\Controller\ModificationController::modifierPage
+
+suppression:
+    path: /supprimer/{idPage}
+    controller : App\Controller\ModificationController::supprimerPage
+
+accueil:
+    path: /accueil
+    controller : App\Controller\AccueilController::afficherAccueil
+
+affichagePage:
+    path: /page/{slug}
+    controller : App\Controller\AffichageController::affichage
+
+mediasManagerBis:
+    path: /medias-managerBis
+    controller : App\Controller\MediasController::afficherMedias
+
+revisionsPage:
+    path: /revision/{slug}
+    controller : App\Controller\RevisionController::afficherRevisions
+
+revisionPage:
+    path: /revision/{slug}/{id}
+    controller : App\Controller\RevisionController::afficherRevisionPage
+
+restaurerRevision:
+    path: /revision/{slug}/{id}/restaurer
+    controller : App\Controller\RevisionController::restaurerRevision

@@ -1,0 +1,89 @@
+{% include 'base.html.twig' %}
+
+{% block header %}
+
+    <!-- Fichiers javascript et CSS nécéssaires pour l'intégration de dataTables -->
+    <link rel="stylesheet" href={{ asset('build/css/bootstrap/dataTables.bootstrap4.css') }}>
+    <script type="text/javascript" src={{ asset('build/js/jquery/jquery.dataTables.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('build/js/bootstrap/dataTables.bootstrap4.min.js') }}></script>
+
+    <!-- Initialisation de dataTables -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tableau').DataTable( {
+                // Langage en français
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                // On désactive le tri et la recherche pour les colonnes "Modifier","Afficher","Supprimer" et "Voir les révisions"
+                "aoColumns": [null, null, {"bSearchable": false, "bSortable": false}, {"bSearchable": false, "bSortable": false}, {"bSearchable": false , "bSortable": false}, {"bSearchable": false, "bSortable": false}]
+
+            } );
+        } );
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    <a href="/accueil">
+        <button type="button"  class="btn btn-info bouton-retour">
+            <span class="glyphicon glyphicon-arrow-left"></span> Retour
+        </button>
+    </a>
+
+  <div class="container">
+
+        <div class="jumbotron">
+             <h1>Edition des pages</h1>
+             <p>Sur cette page, vous pouvez ajouter, supprimer, ou modifier des pages du site.</p>
+        </div>
+
+        <h1 id="titre-liste-pages">Liste des pages<a href="/ajout"><button>Ajouter une nouvelle page</button></a></h1>
+        <br>
+
+  </div>
+
+
+
+ <div class="container">
+
+     <table id="tableau" class="table table-striped table-bordered" style="width:100%">
+
+        <thead>
+
+         <tr>
+
+            <th>Titre</th>
+            <th>Visibilité</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+
+         </tr>
+
+        </thead>
+
+        <tbody>
+
+           {% for page in pages %}
+
+                <tr>
+                    <td>{{ page.title}}</td>
+                    <td>{{ page.published }}</td>
+                    <td><a href="/modification/{{ page.slug }}"> <span class="glyphicon glyphicon-pencil"></span> Modifier </a></td>
+                    <td><a href="/page/{{ page.slug }}"> <span class="glyphicon glyphicon-eye-open"></span> Acceder</a></td>
+                    <td><a href="/supprimer/{{ page.id }}" onclick="return confirm('Etes vous sur de vouloir supprimer cette page ?')" > <span class="glyphicon glyphicon-remove"></span> Supprimer </a></td>
+                    <td><a href="/revision/{{ page.slug }}"> <span class="glyphicon glyphicon-time"></span> Voir les révisions</a></td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+ </div>
+
+{% endblock %}

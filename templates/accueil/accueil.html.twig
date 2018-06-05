@@ -1,0 +1,18 @@
+{% include 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 id="titre-accueil" class="display-1">Bienvenue sur la page d'accueil</h1>
+
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col bg-info" onclick="location.href='/edition';"><h3 class="display-4">Edition des pages</h3></div>
+            <div class="col bg-warning" onclick="location.href='/medias-manager';" ><h3 class="display-4">Gestion des médias</h3></div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

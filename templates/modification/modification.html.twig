@@ -1,0 +1,84 @@
+{% include 'base.html.twig' %}
+
+{% block header %}
+
+    <!-- Integration de ckEditor -->
+    <script type="text/javascript" href="{{ asset('build/ckeditor/ckeditor.js') }}"> </script>
+
+
+{% endblock header %}
+
+{% block body %}
+
+    <a href="/edition">
+        <button type="button"  class="btn btn-info bouton-retour">
+            <span class="glyphicon glyphicon-arrow-left"></span> Retour
+        </button>
+    </a>
+
+
+    <div class="container">
+
+        <div class="jumbotron">
+
+            <h1 id="descFonction">{{ descFonction }}</h1>
+
+            <div class="formulaire">
+
+                <form method="post">
+
+                 {{ form_start(form) }}
+
+                 {{ form_row(form.Titre, {'attr': {'onkeyup' :'sync()' }} ) }}
+
+                 {{ form_end(form) }}
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+    <script type="text/javascript">
+
+        // Permet de remplir le champ URL et MetaTitle à l'avance quand on remplit le champ titre
+        function sync()
+        {
+            if($('#descFonction').text().indexOf("Ajout")===0){ // Si l'on modifie une page au lieu d'en créer une, cette fonctionnalité n'est pas activée
+
+                $('#form_URL').val($('#form_Titre').val().replace(/[^a-zA-Z0-9_-]/g,'-'));
+                $('#form_MetaTitle').val($('#form_Titre').val());
+            }
+        }
+
+
+
+        // Fonction permettant d'empecher un envoi du formulaire si le champ contenu n'est pas rempli (affiche un message d'erreur)
+        $("form").submit( function(e) {
+            var messageLength = CKEDITOR.instances['form_Contenu'].getData().replace(/<[^>]*>/gi, '').length;
+            if( !messageLength ) {
+                alert( 'Le champ de contenu ne peut pas être vide.' );
+                e.preventDefault();
+            }
+
+            // Teste aussi si le champ URL ne contient que des lettres, des chiffres ou des tirets.
+            if(/[^a-zA-Z0-9_-]/g.test($('#form_URL').val())){
+                alert( 'Le champ URL ne peut que contenir des lettres, des chiffres ou des tirets.' );
+                e.preventDefault();
+            }
+
+        });
+
+    </script>
+
+{% endblock %}
+

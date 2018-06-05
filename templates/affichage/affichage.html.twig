@@ -1,0 +1,32 @@
+{% include 'base.html.twig' %}
+
+{% block header %}
+
+    <title>{{ page[0].title }}</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="/edition">Menu</a>
+                <a class="navbar-brand" href="/modification/{{ page[0].slug }}">Editer cette page</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <h1 id="titre-page-affichage" class="display-1" >{{ page[0].title }}</h1>
+
+    <div class="jumbotron">
+
+        {{ page[0].content | raw }}  {# Raw permet d'interpréter le HTML #}
+
+    </div>
+{% endblock %}
+
+

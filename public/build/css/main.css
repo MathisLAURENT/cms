@@ -1,0 +1,50 @@
+#titre-liste-pages{
+
+    color: #5eb5e0;
+
+}
+
+button{
+
+    float :right;
+    color: black;
+    cursor:pointer;
+}
+
+
+.bouton-retour{
+
+    float :left;
+    margin-left: 30px;
+}
+
+
+#formulaire{
+
+    font-size: 300%;
+
+}
+
+
+
+#titre-page-affichage, #titre-accueil, .display-4{
+
+    text-align: center;
+}
+
+
+.col.bg-info, .col.bg-warning{
+
+    padding-top: 150px;
+    padding-bottom: 150px;
+    border-radius: 20px;
+    cursor:pointer;
+
+}
+
+
+body{
+
+    margin-top: 30px;
+
+}
